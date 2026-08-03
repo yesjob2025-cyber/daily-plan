@@ -10,82 +10,78 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <style>
 :root{
-  --paper:#F4F4F0; --card:#FFFFFF; --ink:#171C26; --soft:#69707E; --rule:#DFE3E8; --margin:#F0B7C4;
-  --faith:#7B5FE0; --health:#2F9E77; --grow:#2F6FE8; --work:#DE922A; --mind:#E4658E;
-  --r:16px;
+  --paper:#F4F4F0;--card:#FFFFFF;--ink:#171C26;--soft:#69707E;--rule:#DFE3E8;--margin:#F0B7C4;
+  --faith:#7B5FE0;--health:#2F9E77;--grow:#2F6FE8;--work:#DE922A;--mind:#E4658E;--r:16px;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
-body{
-  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo",sans-serif;
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo",sans-serif;
   color:var(--ink);background-color:var(--paper);
   background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--rule) 31px,var(--rule) 32px);
-  background-position:0 8px;-webkit-font-smoothing:antialiased;padding-bottom:70px;
-}
+  background-position:0 8px;-webkit-font-smoothing:antialiased;padding-bottom:70px}
 body::before{content:"";position:fixed;top:0;bottom:0;left:26px;width:1px;background:var(--margin);opacity:.5;pointer-events:none}
 .wrap{max-width:520px;margin:0 auto;padding:18px 16px 0;position:relative}
 
-/* header */
-.nav{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.arrow{width:32px;height:32px;border-radius:50%;border:1px solid var(--rule);background:var(--card);cursor:pointer;font-size:14px;color:var(--ink);line-height:1;display:grid;place-items:center}
+.nav{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.arrow{width:32px;height:32px;border-radius:50%;border:1px solid var(--rule);background:var(--card);cursor:pointer;font-size:14px;color:var(--ink);display:grid;place-items:center}
 .arrow:hover{border-color:var(--ink)}
 .dhead{flex:1;text-align:center}
 .dhead .d1{font-size:19px;font-weight:700;letter-spacing:-.02em}
 .dhead .d2{font-size:11.5px;color:var(--soft);margin-top:2px}
-.todaybtn{border:0;background:var(--ink);color:#fff;font:inherit;font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px;cursor:pointer;visibility:hidden}
-.todaybtn.show{visibility:visible}
+.tbtn{border:0;background:var(--ink);color:#fff;font:inherit;font-size:11px;font-weight:600;padding:5px 10px;border-radius:999px;cursor:pointer;display:none}
+.tbtn.show{display:inline-block}
+.center{text-align:center;margin:-2px 0 12px}
 
-/* week strip */
-.week{display:flex;gap:5px;margin-bottom:16px}
+.week{display:flex;gap:5px;margin-bottom:14px}
 .wd{flex:1;border:1px solid var(--rule);background:var(--card);border-radius:11px;padding:7px 2px 6px;text-align:center;cursor:pointer}
-.wd.sel{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.wd.sel{box-shadow:inset 0 0 0 1.5px var(--ink);border-color:var(--ink)}
 .wd .l{font-size:10.5px;color:var(--soft);font-weight:600}
-.wd.sun .l{color:var(--mind)} .wd.sat .l{color:var(--grow)}
+.wd.sun .l{color:var(--mind)}.wd.sat .l{color:var(--grow)}
 .wd .n{font-size:13px;font-weight:700;margin-top:1px;font-variant-numeric:tabular-nums}
 .wd .dot{height:3px;border-radius:2px;background:#E7E9ED;margin-top:5px;overflow:hidden}
 .wd .dot i{display:block;height:100%;background:var(--ink);border-radius:2px}
-.wd.today .n{color:var(--ink)}
-.wd.today{background:#fff}
 
-/* progress */
-.top{background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:14px;margin-bottom:12px}
-.tline{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px}
-.tline .m{font-size:15px;font-weight:700}
-.tline .c{font-size:12px;color:var(--soft);font-variant-numeric:tabular-nums}
+.sum{background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:13px 14px;margin-bottom:12px}
+.sum .row{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px}
+.sum .m{font-size:15px;font-weight:700}
+.sum .c{font-size:11.5px;color:var(--soft);font-variant-numeric:tabular-nums}
 .track{height:7px;background:#EDEFF2;border-radius:5px;overflow:hidden;display:flex}
 .track i{height:100%;transition:width .45s ease}
-.legend{display:flex;flex-wrap:wrap;gap:9px;margin-top:9px}
-.legend span{font-size:10.5px;color:var(--soft);display:flex;align-items:center;gap:4px}
-.legend b{width:7px;height:7px;border-radius:50%;display:inline-block}
 
-/* card */
-.card{background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:5px 3px 4px;margin-bottom:11px}
-.chead{display:flex;align-items:center;gap:7px;padding:9px 12px 5px}
-.ctitle{font-size:12.5px;font-weight:700;letter-spacing:-.01em}
-.csub{font-size:11px;color:var(--soft)}
-.ccount{margin-left:auto;font-size:11.5px;color:var(--soft);font-variant-numeric:tabular-nums}
-.core .ctitle{font-family:"Nanum Pen Script",cursive;font-size:19px;font-weight:400}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tab{flex:1;border:1px solid var(--rule);background:var(--card);border-radius:12px;padding:9px 2px 8px;cursor:pointer;text-align:center;font:inherit;color:var(--soft)}
+.tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.tab .tl{font-size:12.5px;font-weight:700;letter-spacing:-.01em}
+.tab .tc{font-size:10px;margin-top:2px;opacity:.8;font-variant-numeric:tabular-nums}
+.tab.done .tl::after{content:" ✓";font-size:11px}
 
-/* item */
-.it{display:flex;align-items:flex-start;gap:10px;width:100%;background:none;border:0;padding:9px 12px;font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:12px;position:relative}
+.block{background:var(--card);border:1px solid var(--rule);border-radius:var(--r);padding:14px 4px 8px}
+.anchor{display:flex;align-items:baseline;gap:7px;padding:0 12px 12px}
+.anchor .a1{font-family:"Nanum Pen Script",cursive;font-size:19px}
+.anchor .a2{font-size:11px;color:var(--soft)}
+
+.chain{position:relative}
+.it{display:flex;align-items:flex-start;gap:11px;width:100%;background:none;border:0;padding:8px 12px;font:inherit;color:inherit;text-align:left;cursor:pointer;border-radius:12px;position:relative}
 .it:focus-visible{outline:2px solid var(--ink);outline-offset:-2px}
-.it.now{background:#FFF9E3}
-.box{flex:0 0 auto;width:20px;height:20px;margin-top:1px;border-radius:7px;border:1.8px solid var(--rule);display:grid;place-items:center;transition:.2s}
-.box svg{width:11px;height:11px;opacity:0;transform:scale(.5);transition:opacity .16s,transform .26s cubic-bezier(.2,1.5,.4,1)}
-.it.done .box svg{opacity:1;transform:scale(1)}
-.tm{flex:0 0 40px;font-size:11px;color:var(--soft);font-variant-numeric:tabular-nums;padding-top:3px;letter-spacing:-.02em}
-.body{flex:1;min-width:0}
+.it.next{background:#FFF9E3}
+.num{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:1.6px solid var(--rule);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--soft);background:var(--card);z-index:1;font-variant-numeric:tabular-nums;transition:.2s}
+.it.done .num{color:#fff}
+.num svg{width:11px;height:11px}
+.line{position:absolute;left:34px;width:1.5px;background:var(--rule);z-index:0}
+.body{flex:1;min-width:0;padding-top:1px}
 .nm{font-size:14px;line-height:1.4;padding:1px 2px;display:inline;
   background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;
   background-position:0 82%;background-size:0% 45%;transition:background-size .4s cubic-bezier(.5,0,.2,1),color .25s}
 .it.done .nm{background-size:100% 45%}
-.note{font-size:11px;color:var(--soft);margin-top:2px;line-height:1.35}
-.rt{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px;padding-top:1px}
-.chip{font-size:10px;font-weight:600;padding:2px 6px;border-radius:999px;line-height:1.4}
+.note{font-size:11px;color:var(--soft);margin-top:2px;line-height:1.4}
+.rt{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:3px;padding-top:2px}
+.chip{font-size:9.5px;font-weight:600;padding:2px 6px;border-radius:999px}
 .min{font-size:10.5px;color:var(--soft);font-variant-numeric:tabular-nums}
-.core-tag{position:absolute;left:2px;top:50%;transform:translateY(-50%);width:3px;height:16px;border-radius:2px;background:var(--ink);opacity:.25}
-.empty{text-align:center;color:var(--soft);font-size:12.5px;padding:18px 12px;line-height:1.6}
-.foot{text-align:center;font-size:11px;color:var(--soft);padding:6px 0 0;line-height:1.6}
+.core::before{content:"";position:absolute;left:2px;top:50%;transform:translateY(-50%);width:3px;height:15px;border-radius:2px;background:var(--ink);opacity:.28}
+.nexttag{font-size:9.5px;font-weight:700;color:#8A6D1F;background:#FFEFBF;padding:2px 6px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.empty{text-align:center;color:var(--soft);font-size:12.5px;padding:14px 12px 20px;line-height:1.7}
+.stamp{text-align:center;padding:12px 0 14px;font-family:"Nanum Pen Script",cursive;font-size:22px;color:var(--health)}
+.foot{text-align:center;font-size:11px;color:var(--soft);padding:14px 0 0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -93,208 +89,186 @@ body::before{content:"";position:fixed;top:0;bottom:0;left:26px;width:1px;backgr
 <div class="wrap">
   <div class="nav">
     <button class="arrow" id="prev" aria-label="이전 날">‹</button>
-    <div class="dhead">
-      <div class="d1" id="d1"></div>
-      <div class="d2" id="d2"></div>
-    </div>
+    <div class="dhead"><div class="d1" id="d1"></div><div class="d2" id="d2"></div></div>
     <button class="arrow" id="next" aria-label="다음 날">›</button>
   </div>
-  <div style="text-align:center;margin:-6px 0 12px"><button class="todaybtn" id="goToday">오늘로</button></div>
-
+  <div class="center"><button class="tbtn" id="goToday">오늘로</button></div>
   <div class="week" id="week"></div>
-
-  <div class="top">
-    <div class="tline"><span class="m" id="mins"></span><span class="c" id="cnt"></span></div>
+  <div class="sum">
+    <div class="row"><span class="m" id="mins"></span><span class="c" id="cnt"></span></div>
     <div class="track" id="track"></div>
-    <div class="legend" id="legend"></div>
   </div>
-
-  <div id="list"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="panel"></div>
   <p class="foot">체크 기록은 자동으로 저장됩니다</p>
 </div>
 
 <script>
-/* ---------- 영역 ---------- */
-const A={
-  신앙:{c:'#7B5FE0'}, 건강:{c:'#2F9E77'}, 성장:{c:'#2F6FE8'},
-  업무:{c:'#DE922A'}, 마음:{c:'#E4658E'}
-};
-
-/* ---------- 매일 고정 (코어) ---------- */
-const CORE=[
-  {t:'05:05',n:'아침기도',a:'신앙',m:1},
-  {t:'05:10',n:'묵주기도 5단',a:'신앙',m:20},
-  {t:'07:00',n:'강아지 산책',a:'건강',m:20,note:'영어 듣기·성경 낭독 함께'},
-  {t:'21:40',n:'일기 3줄',a:'마음',m:5,note:'오늘 한 일 / 잘된 것 / 내일 첫 일'},
-  {t:'22:00',n:'저녁기도',a:'신앙',m:3}
+const A={신앙:'#7B5FE0',건강:'#2F9E77',성장:'#2F6FE8',업무:'#DE922A',마음:'#E4658E'};
+const BLOCKS=[
+  {id:'아침',anchor:'침대에서 나오면',hint:'침대 운동이 시작 신호'},
+  {id:'오전',anchor:'출근하면서',hint:'묵주기도로 문을 연다'},
+  {id:'점심',anchor:'점심 먹고 나면',hint:'몸 먼저 깨우고 앉기'},
+  {id:'저녁',anchor:'퇴근하면서',hint:'영어 들으며 걸어오기'}
 ];
 
-/* ---------- 요일별 일정 ---------- */
-const MASS={t:'05:45',n:'새벽 미사',a:'신앙',m:60,note:'5:45 출발 · 6시 미사 (성경읽기·매일미사책 대체)'};
-const AM=[{t:'08:15',n:'전문독서',a:'성장',m:15,note:'제안서에 쓸 한 줄 찾기'},
-          {t:'08:30',n:'본업 1부 — 제안서·기획',a:'업무',m:180,note:'머리 쓰는 일만'}];
-const NOON=[{t:'11:30',n:'점심 운동',a:'건강',m:5},{t:'11:35',n:'점심 산책',a:'건강',m:10}];
-const PM=(info)=>[{t:'13:30',n:'본업 2부 — 실무·회신',a:'업무',m:120},
-                  {t:'15:30',n:'나라장터 입찰 확인',a:'업무',m:10,note:'검색 조건 저장해두고 스캔만'},
-                  {t:'15:40',n:info,a:'업무',m:20}];
-const GROW=(n)=>({t:'16:00',n:n,a:'성장',m:60,note:'시작 전 "오늘 끝낼 한 덩어리" 먼저 적기'});
+/* ---------- 평일 사슬 ---------- */
+const MORNING=[
+  {n:'침대 운동',a:'건강',m:5,core:1,note:'누운 채로 시작하는 3동작 고정'},
+  {n:'미사 (매일미사)',a:'신앙',m:40,core:1},
+  {n:'아침기도',a:'신앙',m:1,core:1},
+  {n:'한자 (사자성어)',a:'성장',m:5},
+  {n:'하루 계획 세우기',a:'마음',m:5,note:'오늘 끝낼 일 3가지만'}
+];
+const FORENOON=[
+  {n:'묵주기도 5단',a:'신앙',m:20,core:1,note:'출근길에 · 바쁜 날은 1단'},
+  {n:'독서',a:'성장',m:30,note:'"제안서에 쓸 한 줄" 찾기'},
+  {n:'키워드 정보수집',a:'업무',m:20},
+  {n:'전문지 구독',a:'업무',m:20},
+  {n:'입찰정보 확인',a:'업무',m:10,note:'나라장터 · 검색 조건 저장해두고 스캔만'},
+  {n:'메일 정리',a:'업무',m:5,note:'읽고 3초 안에 처리·보관·삭제'},
+  {n:'업무 시작',a:'업무',m:120,note:'머리 쓰는 일부터'}
+];
+const NOON=[
+  {n:'점심 운동',a:'건강',m:5},
+  {n:'점심 산책',a:'건강',m:10},
+  {n:'학습 영상',a:'성장',m:20,note:'하나만 보고 끝내기'},
+  {n:'코딩 · AI 활용 테스트',a:'성장',m:30,note:'시작 전 "오늘 만들 것" 한 줄 적기'},
+  {n:'업무 진행',a:'업무',m:120},
+  {n:'제안서',a:'업무',m:60}
+];
+const EVENING=[
+  {n:'영어 듣기',a:'성장',m:10,core:1,note:'퇴근길에'},
+  {n:'강아지 산책',a:'건강',m:20,core:1},
+  {n:'독서',a:'성장',m:30,note:'최소 5쪽'},
+  {n:'영어',a:'성장',m:10},
+  {n:'자격증 공부',a:'성장',m:30,note:'시작 전 "오늘 끝낼 한 덩어리" 적기'},
+  {n:'일기쓰기',a:'마음',m:5,core:1,note:'한 일 / 잘된 것 / 내일 첫 일'},
+  {n:'저녁기도',a:'신앙',m:3,core:1}
+];
+const WEEKDAY={아침:MORNING,오전:FORENOON,점심:NOON,저녁:EVENING};
 
 const PLAN={
-  1:[MASS,...AM,...NOON,...PM('전문지 구독'),GROW('자격증 공부'),
-     {t:'19:00',n:'저녁 스트레칭',a:'건강',m:10},{t:'21:30',n:'한자 (사자성어)',a:'성장',m:5}],
-  2:[{t:'05:35',n:'성경 5장',a:'신앙',m:15},{t:'05:50',n:'영적독서',a:'신앙',m:20},
-     {t:'06:15',n:'아침 운동',a:'건강',m:5},...AM,...NOON,...PM('키워드 정보수집'),GROW('코딩 · AI'),
-     {t:'19:00',n:'조깅',a:'건강',m:30},{t:'21:00',n:'일반독서',a:'성장',m:30,note:'최소 5쪽'},
-     {t:'21:30',n:'영어',a:'성장',m:10}],
-  3:[MASS,...AM,...NOON,...PM('메일 · 업무 파일 정리'),GROW('자격증 공부'),
-     {t:'19:00',n:'저녁 스트레칭',a:'건강',m:10},{t:'21:30',n:'한자 (사자성어)',a:'성장',m:5}],
-  4:[{t:'05:35',n:'성경 5장',a:'신앙',m:15},{t:'05:50',n:'영적독서',a:'신앙',m:20},
-     {t:'06:15',n:'아침 운동',a:'건강',m:5},...AM,...NOON,...PM('전문지 구독'),GROW('코딩 · AI'),
-     {t:'19:00',n:'조깅',a:'건강',m:30},{t:'21:00',n:'일반독서',a:'성장',m:30,note:'최소 5쪽'},
-     {t:'21:30',n:'영어',a:'성장',m:10}],
-  5:[MASS,...AM,...NOON,...PM('키워드 정보수집'),
-     {t:'16:00',n:'수익화 프로젝트',a:'성장',m:60,note:'이번 달 정한 하나만 (토요일 오전과 이어서)'},
-     {t:'19:00',n:'저녁 스트레칭',a:'건강',m:10},{t:'21:30',n:'한자 (사자성어)',a:'성장',m:5}],
-  6:[{t:'09:00',n:'수익화 프로젝트',a:'성장',m:120,note:'금요일에 하던 것 이어서 · 유튜브/블로그/서비스 중 하나'},
-     {t:'15:00',n:'토요 미사',a:'신앙',m:60},
-     {t:'16:00',n:'성당',a:'신앙',m:120,note:'6시까지'}],
-  0:[{t:'10:00',n:'일반독서',a:'성장',m:30},
-     {t:'20:00',n:'주간 리뷰',a:'마음',m:15,note:'잘된 것 / 안 된 것 / 다음 주에 바꿀 것 하나'}]
+ 1:WEEKDAY,2:WEEKDAY,3:WEEKDAY,4:WEEKDAY,5:WEEKDAY,
+ 6:{아침:[MORNING[0],MORNING[2],{n:'하루 계획 세우기',a:'마음',m:5}],
+    오전:[{n:'묵주기도 5단',a:'신앙',m:20,core:1},
+          {n:'수익화 프로젝트',a:'성장',m:120,note:'유튜브·블로그·서비스 중 이번 달 정한 하나만'}],
+    점심:[{n:'토요 미사',a:'신앙',m:60,note:'오후 3시'},
+          {n:'성당',a:'신앙',m:120,note:'6시까지'}],
+    저녁:[{n:'강아지 산책',a:'건강',m:20,core:1},
+          {n:'일기쓰기',a:'마음',m:5,core:1},{n:'저녁기도',a:'신앙',m:3,core:1}]},
+ 0:{아침:[MORNING[0],MORNING[2]],
+    오전:[{n:'묵주기도 5단',a:'신앙',m:20,core:1},{n:'독서',a:'성장',m:30}],
+    점심:[],
+    저녁:[{n:'강아지 산책',a:'건강',m:20,core:1},
+          {n:'주간 리뷰',a:'마음',m:15,note:'잘된 것 / 안 된 것 / 다음 주에 바꿀 것 하나'},
+          {n:'일기쓰기',a:'마음',m:5,core:1},{n:'저녁기도',a:'신앙',m:3,core:1}]}
 };
-const DAYNOTE={1:'새벽 미사',2:'저녁 조깅',3:'새벽 미사',4:'저녁 조깅',5:'새벽 미사 · 수익화',6:'오후 성당',0:'쉬는 날 — 두 가지만'};
+const DAYNOTE={1:'평일 사슬',2:'평일 사슬',3:'평일 사슬',4:'평일 사슬',5:'평일 사슬',
+               6:'오전 수익화 · 오후 성당',0:'쉬는 날 — 가볍게'};
 
 /* ---------- 저장 ---------- */
-const KEY='daily-plan-v1';
-let log={};
+const KEY='daily-plan-v3';
+let log={},saveT=null;
 const Store={
-  async load(){
-    try{if(window.storage){const r=await window.storage.get(KEY,false);if(r&&r.value)return JSON.parse(r.value)}}catch(e){}
-    try{const v=localStorage.getItem(KEY);if(v)return JSON.parse(v)}catch(e){}
-    return {};
-  },
-  async save(d){
-    const s=JSON.stringify(d);
+  async load(){try{if(window.storage){const r=await window.storage.get(KEY,false);if(r&&r.value)return JSON.parse(r.value)}}catch(e){}
+    try{const v=localStorage.getItem(KEY);if(v)return JSON.parse(v)}catch(e){}return{}},
+  async save(d){const s=JSON.stringify(d);
     try{if(window.storage){await window.storage.set(KEY,s,false);return}}catch(e){}
-    try{localStorage.setItem(KEY,s)}catch(e){}
-  }
+    try{localStorage.setItem(KEY,s)}catch(e){}}
 };
-let timer=null;
-function persist(){clearTimeout(timer);timer=setTimeout(()=>{
-  const keep=Object.keys(log).sort().slice(-90);const o={};keep.forEach(k=>o[k]=log[k]);log=o;Store.save(log);
-},250)}
+function persist(){clearTimeout(saveT);saveT=setTimeout(()=>{
+  const k=Object.keys(log).sort().slice(-90),o={};k.forEach(x=>o[x]=log[x]);log=o;Store.save(log)},250)}
 
-/* ---------- 날짜 ---------- */
 const dk=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 const TODAY=dk(new Date());
-let cur=new Date(); cur.setHours(0,0,0,0);
 const DAYS=['일','월','화','수','목','금','토'];
+let cur=new Date();cur.setHours(0,0,0,0);
+let tab=autoTab();
 
-function itemsFor(date){
-  const w=date.getDay();
-  const core=CORE.map((x,i)=>({...x,id:'c'+i,core:true}));
-  const day=(PLAN[w]||[]).map((x,i)=>({...x,id:'d'+w+'-'+i}));
-  return {core,day};
-}
+function autoTab(){const d=new Date(),m=d.getHours()*60+d.getMinutes();
+  if(m<8*60+30)return 0;if(m<11*60+30)return 1;if(m<18*60)return 2;return 3}
+function blocksOf(d){const p=PLAN[d.getDay()],o={};
+  BLOCKS.forEach(b=>{o[b.id]=(p[b.id]||[]).map((x,i)=>({...x,id:d.getDay()+'-'+b.id+'-'+i}))});return o}
 const doneOf=k=>log[k]||[];
-function toggle(id){
-  const k=dk(cur),arr=doneOf(k).slice(),i=arr.indexOf(id);
-  if(i>-1)arr.splice(i,1);else arr.push(id);
-  log[k]=arr;persist();render();
-}
-function nowMin(){const d=new Date();return d.getHours()*60+d.getMinutes()}
-const toMin=t=>Number(t.slice(0,2))*60+Number(t.slice(3));
+function toggle(id){const k=dk(cur),a=doneOf(k).slice(),i=a.indexOf(id);
+  if(i>-1)a.splice(i,1);else a.push(id);log[k]=a;persist();render()}
 
-/* ---------- 렌더 ---------- */
 function render(){
-  const k=dk(cur),done=doneOf(k),{core,day}=itemsFor(cur);
-  const all=[...core,...day];
+  const k=dk(cur),done=doneOf(k),bl=blocksOf(cur);
+  const all=BLOCKS.flatMap(b=>bl[b.id]);
 
   document.getElementById('d1').textContent=`${cur.getMonth()+1}월 ${cur.getDate()}일 ${DAYS[cur.getDay()]}요일`;
   document.getElementById('d2').textContent=DAYNOTE[cur.getDay()];
   document.getElementById('goToday').classList.toggle('show',k!==TODAY);
 
-  // 주간 스트립
   const wk=document.getElementById('week');wk.innerHTML='';
   const base=new Date(cur);base.setDate(base.getDate()-((base.getDay()+6)%7));
   for(let i=0;i<7;i++){
     const d=new Date(base);d.setDate(base.getDate()+i);
-    const kk=dk(d),it=itemsFor(d),tot=it.core.length+it.day.length;
+    const kk=dk(d),tot=BLOCKS.flatMap(b=>blocksOf(d)[b.id]).length;
     const r=tot?Math.min(1,(log[kk]||[]).length/tot):0;
     const el=document.createElement('div');
-    el.className='wd'+(kk===dk(cur)?' sel':'')+(kk===TODAY?' today':'')+(d.getDay()===0?' sun':'')+(d.getDay()===6?' sat':'');
+    el.className='wd'+(kk===k?' sel':'')+(d.getDay()===0?' sun':'')+(d.getDay()===6?' sat':'');
     el.innerHTML=`<div class="l">${DAYS[d.getDay()]}</div><div class="n">${d.getDate()}</div><div class="dot"><i style="width:${Math.round(r*100)}%"></i></div>`;
-    el.onclick=()=>{cur=d;render()};
+    el.onclick=()=>{cur=d;if(dk(d)===TODAY)tab=autoTab();render()};
     wk.appendChild(el);
   }
 
-  // 진행률
   const dn=all.filter(x=>done.includes(x.id));
-  const mins=dn.reduce((s,x)=>s+x.m,0), total=all.reduce((s,x)=>s+x.m,0);
-  document.getElementById('mins').textContent=mins?`${Math.floor(mins/60)?Math.floor(mins/60)+'시간 ':''}${mins%60?mins%60+'분':''} 채웠어요`.trim():'아직 시작 전';
-  document.getElementById('cnt').textContent=`${dn.length} / ${all.length}  ·  총 ${Math.floor(total/60)}시간 ${total%60}분`;
-  const track=document.getElementById('track');track.innerHTML='';
-  Object.keys(A).forEach(a=>{
-    const m=dn.filter(x=>x.a===a).reduce((s,x)=>s+x.m,0);
-    if(!m)return;
-    const i=document.createElement('i');i.style.width=(m/total*100)+'%';i.style.background=A[a].c;track.appendChild(i);
-  });
-  const lg=document.getElementById('legend');lg.innerHTML='';
-  Object.keys(A).forEach(a=>{
-    const t=all.filter(x=>x.a===a);if(!t.length)return;
-    const d2=t.filter(x=>done.includes(x.id)).length;
-    lg.innerHTML+=`<span><b style="background:${A[a].c}"></b>${a} ${d2}/${t.length}</span>`;
+  const mins=dn.reduce((s,x)=>s+x.m,0),total=all.reduce((s,x)=>s+x.m,0);
+  const hm=v=>`${Math.floor(v/60)?Math.floor(v/60)+'시간 ':''}${v%60?v%60+'분':''}`.trim()||'0분';
+  document.getElementById('mins').textContent=mins?hm(mins)+' 채웠어요':'아직 시작 전';
+  document.getElementById('cnt').textContent=`${dn.length} / ${all.length}  ·  총 ${hm(total)}`;
+  const tr=document.getElementById('track');tr.innerHTML='';
+  Object.keys(A).forEach(a=>{const m=dn.filter(x=>x.a===a).reduce((s,x)=>s+x.m,0);
+    if(!m)return;const i=document.createElement('i');i.style.width=(m/total*100)+'%';i.style.background=A[a];tr.appendChild(i)});
+
+  const tabs=document.getElementById('tabs');tabs.innerHTML='';
+  BLOCKS.forEach((b,i)=>{
+    const it=bl[b.id],d2=it.filter(x=>done.includes(x.id)).length;
+    const el=document.createElement('button');
+    el.className='tab'+(i===tab?' on':'')+(it.length&&d2===it.length?' done':'');
+    el.innerHTML=`<div class="tl">${b.id}</div><div class="tc">${it.length?d2+'/'+it.length:'—'}</div>`;
+    el.onclick=()=>{tab=i;render()};
+    tabs.appendChild(el);
   });
 
-  // 목록
-  const list=document.getElementById('list');list.innerHTML='';
-  list.appendChild(card('매일 고정','무슨 일이 있어도',core,done,true));
-  if(day.length){
-    const label=cur.getDay()===0?'일요일':cur.getDay()===6?'토요일':'오늘 일정';
-    list.appendChild(card(label,timeRange(day),day,done,false));
+  const b=BLOCKS[tab],items=bl[b.id],panel=document.getElementById('panel');
+  panel.innerHTML='';
+  const sec=document.createElement('section');sec.className='block';
+  sec.innerHTML=`<div class="anchor"><span class="a1">${b.anchor}</span><span class="a2">${b.hint}</span></div>`;
+  if(!items.length){
+    sec.innerHTML+='<div class="empty">이 시간은 비워 둡니다.<br>쉬는 것도 계획이에요.</div>';
+  }else{
+    const chain=document.createElement('div');chain.className='chain';
+    const nextIdx=items.findIndex(x=>!done.includes(x.id));
+    items.forEach((x,i)=>{
+      const on=done.includes(x.id),c=A[x.a];
+      const el=document.createElement('button');
+      el.className='it'+(on?' done':'')+(i===nextIdx?' next':'')+(x.core?' core':'');
+      el.setAttribute('aria-pressed',on);
+      el.innerHTML=
+       `<span class="num" style="${on?`background:${c};border-color:${c}`:''}">${on?'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.2 5.3L20 6.6"/></svg>':(i+1)}</span>
+        <span class="body">
+          <span class="nm" style="color:${on?c:'var(--ink)'};opacity:${on?'.8':'1'}">${x.n}</span>${i===nextIdx?'<span class="nexttag">다음</span>':''}
+          ${x.note?`<span class="note">${x.note}</span>`:''}
+        </span>
+        <span class="rt"><span class="chip" style="color:${c};background:${c}1A">${x.a}</span><span class="min">${x.m}분</span></span>`;
+      el.onclick=()=>toggle(x.id);
+      chain.appendChild(el);
+    });
+    const line=document.createElement('div');line.className='line';line.style.top='22px';line.style.bottom='22px';
+    chain.appendChild(line);
+    sec.appendChild(chain);
+    if(nextIdx===-1)sec.innerHTML+='<div class="stamp">이 블록 끝 ✓</div>';
   }
-}
-
-function timeRange(items){return items.length?`${items[0].t} – ${items[items.length-1].t}`:''}
-
-function card(title,sub,items,done,isCore){
-  const sec=document.createElement('section');
-  sec.className='card'+(isCore?' core':'');
-  const d=items.filter(x=>done.includes(x.id)).length;
-  const h=document.createElement('div');h.className='chead';
-  h.innerHTML=`<span class="ctitle">${title}</span><span class="csub">${sub}</span><span class="ccount">${d}/${items.length}</span>`;
-  sec.appendChild(h);
-  const isToday=dk(cur)===TODAY, nm=nowMin();
-  let nowIdx=-1;
-  if(isToday&&!isCore){items.forEach((x,i)=>{if(toMin(x.t)<=nm)nowIdx=i});}
-  items.forEach((x,i)=>{
-    const a=A[x.a],on=done.includes(x.id);
-    const b=document.createElement('button');
-    b.className='it'+(on?' done':'')+(i===nowIdx&&!on?' now':'');
-    b.setAttribute('aria-pressed',on);
-    b.innerHTML=
-      `${isCore?'<span class="core-tag"></span>':''}
-       <span class="box" style="${on?`border-color:${a.c};background:${a.c}`:''}">
-         <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.2 5.3L20 6.6"/></svg>
-       </span>
-       <span class="tm">${x.t}</span>
-       <span class="body">
-         <span class="nm" style="color:${on?a.c:'var(--ink)'};opacity:${on?'.8':'1'}">${x.n}</span>
-         ${x.note?`<span class="note">${x.note}</span>`:''}
-       </span>
-       <span class="rt">
-         <span class="chip" style="color:${a.c};background:${a.c}1A">${x.a}</span>
-         <span class="min">${x.m}분</span>
-       </span>`;
-    b.onclick=()=>toggle(x.id);
-    sec.appendChild(b);
-  });
-  return sec;
+  panel.appendChild(sec);
 }
 
 document.getElementById('prev').onclick=()=>{cur.setDate(cur.getDate()-1);render()};
 document.getElementById('next').onclick=()=>{cur.setDate(cur.getDate()+1);render()};
-document.getElementById('goToday').onclick=()=>{cur=new Date();cur.setHours(0,0,0,0);render()};
-
+document.getElementById('goToday').onclick=()=>{cur=new Date();cur.setHours(0,0,0,0);tab=autoTab();render()};
 (async()=>{log=await Store.load()||{};render()})();
 </script>
 </body>
