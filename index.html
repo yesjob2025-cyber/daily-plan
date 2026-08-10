@@ -364,7 +364,7 @@ const PLAN={
 };
 const DAYNOTE={1:'평일',2:'평일',3:'평일',4:'평일',5:'평일',6:'토요일 · 글감 묶는 날',0:'일요일 — 가볍게'};
 
-const KEY='daily-plan-v12';
+const KEY='daily-plan-v11';
 let ST={log:{},rec:{},extra:{},used:0,stage:1},saveT=null;
 const Store={
   async load(){try{if(window.storage){const r=await window.storage.get(KEY,false);if(r&&r.value)return JSON.parse(r.value)}}catch(e){}
