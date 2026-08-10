@@ -107,6 +107,7 @@ body::before{content:"";position:fixed;top:0;bottom:0;left:26px;width:1px;backgr
 .it.done .nm{background-size:100% 45%}
 .newtag{font-size:9.5px;font-weight:700;color:#1F5FA8;background:#DCEAFB;padding:2px 6px;border-radius:999px;margin-left:6px;vertical-align:2px}
 .exttag{font-size:9.5px;font-weight:700;color:#5A6474;background:#EDEFF2;padding:2px 6px;border-radius:999px;margin-left:6px;vertical-align:2px}
+.cnt{font-size:9.5px;font-weight:700;color:#1F5FA8;background:#EAF1FC;padding:2px 6px;border-radius:999px;margin-left:6px;vertical-align:2px}
 .note{font-size:11px;color:var(--soft);margin-top:2px;line-height:1.4}
 .memo{font-size:11.5px;color:var(--ink);opacity:.72;margin-top:4px;line-height:1.45;border-left:2px solid var(--rule);padding-left:7px;white-space:pre-wrap;word-break:break-word}
 .rt{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:2px;padding-top:2px}
@@ -116,6 +117,13 @@ body::before{content:"";position:fixed;top:0;bottom:0;left:26px;width:1px;backgr
 .pen.has{color:var(--grow)}
 .base::before{content:"";position:absolute;left:2px;top:50%;transform:translateY(-50%);width:3px;height:15px;border-radius:2px;background:var(--ink);opacity:.22}
 .nexttag{font-size:9.5px;font-weight:700;color:#8A6D1F;background:#FFEFBF;padding:2px 6px;border-radius:999px;margin-left:6px;vertical-align:2px}
+/* 링크 카드 */
+.links{padding:0 12px 8px 45px;display:flex;flex-direction:column;gap:6px}
+.lk{display:block;border:1px solid var(--rule);border-radius:11px;padding:9px 11px;text-decoration:none;color:inherit;background:#FBFBF9}
+.lk:hover{border-color:var(--grow)}
+.lk b{font-size:12.5px;display:block;line-height:1.35}
+.lk span{font-size:11.5px;color:var(--soft);display:block;margin-top:3px;line-height:1.5}
+.lk i{font-size:10px;color:var(--grow);font-style:normal;display:block;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .empty{text-align:center;color:var(--soft);font-size:12.5px;padding:14px 12px 20px;line-height:1.7}
 .stamp{text-align:center;padding:12px 0 10px;font-family:"Nanum Pen Script",cursive;font-size:22px;color:var(--health)}
 .nextup{font-size:11px;color:var(--soft);padding:2px 12px 10px;line-height:1.5}
@@ -136,9 +144,17 @@ body::before{content:"";position:fixed;top:0;bottom:0;left:26px;width:1px;backgr
 .x{border:0;background:#EDEFF2;width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;color:var(--ink)}
 .ssub{font-size:11.5px;color:var(--soft);margin:0 0 14px;line-height:1.5}
 .fl{font-size:11.5px;font-weight:700;color:var(--soft);margin:12px 0 5px}
-textarea,input[type=text],input[type=number],select{width:100%;padding:11px;border:1px solid var(--rule);border-radius:12px;font:inherit;font-size:14px;background:#FCFCFB;color:var(--ink);line-height:1.55;resize:vertical}
+textarea,input[type=text],input[type=url],input[type=number],select{width:100%;padding:11px;border:1px solid var(--rule);border-radius:12px;font:inherit;font-size:14px;background:#FCFCFB;color:var(--ink);line-height:1.55;resize:vertical}
 textarea:focus,input:focus,select:focus{outline:0;border-color:var(--ink);background:#fff}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ent{border:1px solid var(--rule);border-radius:13px;padding:11px;margin-bottom:9px;background:#FAFAF8;position:relative}
+.ent .eh{display:flex;align-items:center;margin-bottom:7px}
+.ent .eh b{font-size:11.5px;color:var(--soft)}
+.ent .eh button{margin-left:auto;border:0;background:none;color:#C0424F;font:inherit;font-size:11px;cursor:pointer;padding:2px 4px}
+.ent input,.ent textarea{margin-bottom:7px;font-size:13.5px;padding:9px}
+.ent input:last-of-type{margin-bottom:0}
+.addent{width:100%;padding:11px;border:1px dashed #C7CCD4;background:transparent;border-radius:12px;font:inherit;font-size:12.5px;color:var(--soft);cursor:pointer;margin-top:2px}
+.addent:hover{border-color:var(--ink);color:var(--ink)}
 .save{margin-top:16px;width:100%;padding:13px;border:0;border-radius:12px;background:var(--ink);color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer}
 .del2{width:100%;margin-top:8px;border:0;background:none;font:inherit;font-size:11.5px;color:#C0424F;cursor:pointer;padding:6px}
 .rc{border-bottom:1px solid #F0F1F3;padding:11px 0}
@@ -147,6 +163,7 @@ textarea:focus,input:focus,select:focus{outline:0;border-color:var(--ink);backgr
 .rc .rb{font-size:13px;line-height:1.55;margin-top:4px;white-space:pre-wrap}
 .rc .rn{font-size:12px;color:var(--soft);margin-top:4px}
 .rc .rd{font-size:10.5px;color:var(--soft);font-variant-numeric:tabular-nums;margin-left:auto;font-weight:500}
+.rc a.lk{margin-top:7px}
 .copy{width:100%;margin-top:14px;padding:11px;border:1px solid var(--rule);background:var(--card);border-radius:12px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
 .lvrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #F0F1F3}
 .lvrow .lvn{width:24px;height:24px;border-radius:50%;background:#EDEFF2;display:grid;place-items:center;font-size:11px;font-weight:700}
@@ -155,7 +172,6 @@ textarea:focus,input:focus,select:focus{outline:0;border-color:var(--ink);backgr
 .lvrow .lvt b{font-size:13px}
 .lvrow .lvt span{display:block;font-size:11px;color:var(--soft);margin-top:2px}
 .lvgo{border:1px solid var(--rule);background:var(--card);border-radius:9px;font:inherit;font-size:11px;padding:6px 10px;cursor:pointer;color:var(--ink)}
-/* 현황 */
 .gh{margin-bottom:16px}
 .ghh{display:flex;align-items:baseline;gap:7px;margin-bottom:7px}
 .ghh b{font-size:13px}
@@ -164,7 +180,7 @@ textarea:focus,input:focus,select:focus{outline:0;border-color:var(--ink);backgr
 .gr{display:flex;align-items:center;gap:6px;padding:5px 0}
 .gr .gn{flex:1;font-size:12.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .gr .cells{display:flex;gap:3px}
-.cell{width:17px;height:17px;border-radius:5px;background:#EDEFF2;display:grid;place-items:center;font-size:9px;color:#B6BCC6}
+.cell{width:17px;height:17px;border-radius:5px;background:#EDEFF2}
 .cell.na{background:transparent;border:1px dashed #E3E6EA}
 .dayhdr{display:flex;gap:3px;justify-content:flex-end;font-size:9.5px;color:var(--soft);margin-bottom:2px}
 .dayhdr span{width:17px;text-align:center}
@@ -212,7 +228,7 @@ textarea:focus,input:focus,select:focus{outline:0;border-color:var(--ink);backgr
     <p class="ssub" id="shSub"></p>
     <div id="shFields"></div>
     <button class="save" id="shSave">저장하고 체크</button>
-    <button class="del2" id="shDel">기록 지우기</button>
+    <button class="del2" id="shDel">기록 전체 지우기</button>
   </div>
 </div>
 <div class="sheet" id="sheet2">
@@ -256,7 +272,6 @@ const A={신앙:'#7B5FE0',건강:'#2F9E77',성장:'#2F6FE8',업무:'#DE922A',마
 const GROUP={신앙:'영성',건강:'운동',성장:'성장',업무:'일',마음:'성장'};
 const GC={영성:'#7B5FE0',운동:'#2F9E77',일:'#DE922A',성장:'#2F6FE8'};
 const GKEYS=['영성','운동','일','성장'];
-const GAREA={영성:'신앙',운동:'건강',일:'업무',성장:'성장'};
 const BLOCKS=[
   {id:'아침',anchor:'침대에서 나오면',hint:'침대 운동이 시작 신호'},
   {id:'오전',anchor:'책상에 앉으면',hint:'정리부터 하고 시작'},
@@ -271,6 +286,7 @@ const STAGES=[
   {n:'더 이른 아침',d:'새벽 미사 · 영어 듣기'},
   {n:'전체',d:'계획한 하루 전부'}
 ];
+/* rec 종류: f = 칸 나눔 / list = 요약+링크 목록 / 없으면 자유 서술 */
 const R_MASS={t:'강론 · 오늘의 말씀',ph:'마음에 남은 구절, 강론 요지, 오늘 실천할 것'};
 const R_EX={t:'운동량',ph:'예) 스쿼트 20 · 플랭크 1분 / 3,200보 · 25분'};
 const R_READ={t:'독서 메모',ph:'책 제목 · 남은 문장 · 어디에 쓸지'};
@@ -278,9 +294,12 @@ const R_STUDY={t:'학습 기록',ph:'무엇을 · 어디까지 · 어려웠던 �
 const R_DIARY={t:'오늘의 일기',f:['오늘 한 일','잘된 것','내일 첫 일']};
 const R_PLAN={t:'오늘 끝낼 일 3가지',f:['첫 번째','두 번째','세 번째']};
 const R_BIBLE={t:'성경 메모',ph:'읽은 곳 · 마음에 남은 구절'};
-const R_KEY={t:'키워드 정리',ph:'오늘의 키워드 · 출처 · 어디에 쓸지'};
 const R_IDEA={t:'글감 한 꼭지',f:['제목','핵심 세 줄','사례 하나']};
 const R_ETC={t:'기타 기록',ph:'무엇을 했는지 · 남길 것'};
+const R_KEY={t:'키워드 정리',list:true,lab:['키워드 · 제목','요약','링크'],
+  ph:['예: 청년 첫경력 국가책임제','한 줄 요약 · 시사점','https://'],add:'키워드 추가'};
+const R_BID={t:'눈에 띈 공고',list:true,lab:['공고명','마감일 · 검토 메모','링크'],
+  ph:['공고명','마감일 · 검토 여부','https://'],add:'공고 추가'};
 const IDEA_NAME='글감 한 꼭지';
 
 const MORNING=[
@@ -293,9 +312,9 @@ const MORNING=[
 ];
 const FORENOON=[
   {s:0,n:'업무 정리',a:'업무',m:10,p:1,note:'메일 · 파일 정리'},
-  {s:1,n:'키워드 정리',a:'업무',m:10,p:3,note:'하루 하나면 충분 · 한 곳에 쌓기',rec:R_KEY},
+  {s:1,n:'키워드 정리',a:'업무',m:10,p:3,note:'요약과 링크를 한 건씩 쌓기',rec:R_KEY},
   {s:0,n:'업무 시작',a:'업무',m:120,p:1},
-  {s:3,n:'입찰정보 확인',a:'업무',m:10,p:3,note:'나라장터 · 조건 저장해두고 스캔만',rec:{t:'눈에 띈 공고',ph:'공고명 · 마감일 · 검토 여부'}},
+  {s:3,n:'입찰정보 확인',a:'업무',m:10,p:3,note:'나라장터 · 조건 저장해두고 스캔만',rec:R_BID},
   {s:6,n:'전문지 구독',a:'업무',m:20,p:3,rec:{t:'읽은 내용',ph:'제목 · 핵심 한 줄'}}
 ];
 const NOON=[
@@ -345,7 +364,7 @@ const PLAN={
 };
 const DAYNOTE={1:'평일',2:'평일',3:'평일',4:'평일',5:'평일',6:'토요일 · 글감 묶는 날',0:'일요일 — 가볍게'};
 
-const KEY='daily-plan-v11';
+const KEY='daily-plan-v12';
 let ST={log:{},rec:{},extra:{},used:0,stage:1},saveT=null;
 const Store={
   async load(){try{if(window.storage){const r=await window.storage.get(KEY,false);if(r&&r.value)return JSON.parse(r.value)}}catch(e){}
@@ -376,7 +395,12 @@ function blocksOf(d){
 }
 const doneOf=k=>ST.log[k]||[];
 const recOf=(k,id)=>(ST.rec[k]||{})[id];
-const recText=v=>Array.isArray(v)?v.filter(Boolean).join('\n'):(v||'');
+function isList(v){return Array.isArray(v)&&v.length&&typeof v[0]==='object'}
+function recText(v){
+  if(isList(v))return v.map(e=>'· '+(e.t||e.s||'')).join('\n');
+  return Array.isArray(v)?v.filter(Boolean).join('\n'):(v||'');
+}
+const host=u=>{try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return u}};
 
 function scoreOf(date){
   const done=doneOf(dk(date)),all=BLOCKS.flatMap(b=>blocksOf(date)[b.id]);
@@ -392,27 +416,57 @@ function tickets(){let e=0;Object.keys(ST.log).forEach(k=>{const s=scoreOf(new D
 function toggle(id){const k=dk(cur),a=doneOf(k).slice(),i=a.indexOf(id);
   if(i>-1)a.splice(i,1);else a.push(id);ST.log[k]=a;persist();render()}
 function check(id){const k=dk(cur),a=doneOf(k).slice();if(!a.includes(id)){a.push(id);ST.log[k]=a}}
-function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function safeUrl(u){return /^https?:\/\//i.test(u||'')?u:''}
 
-/* 기록 */
+/* 기록 시트 */
 const sheet=document.getElementById('sheet');
+function entRow(e){
+  const r=editing.rec,d=document.createElement('div');d.className='ent';
+  d.innerHTML=`<div class="eh"><b>항목</b><button type="button">지우기</button></div>
+    <input type="text" class="e-t" placeholder="${esc(r.ph[0])}" value="${esc(e.t||'')}">
+    <textarea class="e-s" rows="3" placeholder="${esc(r.ph[1])}">${esc(e.s||'')}</textarea>
+    <input type="url" class="e-u" placeholder="${esc(r.ph[2])}" value="${esc(e.u||'')}">`;
+  d.querySelector('button').onclick=()=>d.remove();
+  return d;
+}
 function openRec(item){
   editing=item;const k=dk(cur),v=recOf(k,item.id),r=item.rec;
   document.getElementById('shTitle').textContent=r.t;
   document.getElementById('shSub').textContent=`${item.n} · ${cur.getMonth()+1}월 ${cur.getDate()}일`;
   const box=document.getElementById('shFields');box.innerHTML='';
-  if(r.f){r.f.forEach((f,i)=>{box.innerHTML+=`<div class="fl">${f}</div><input type="text" class="fin" value="${(Array.isArray(v)&&v[i]?v[i]:'').replace(/"/g,'&quot;')}">`})}
-  else{box.innerHTML=`<textarea class="fin" rows="6" placeholder="${r.ph||''}">${typeof v==='string'?v:''}</textarea>`}
+  if(r.list){
+    const list=document.createElement('div');box.appendChild(list);
+    const arr=isList(v)?v:[];
+    (arr.length?arr:[{}]).forEach(e=>list.appendChild(entRow(e)));
+    const add=document.createElement('button');add.className='addent';add.type='button';
+    add.textContent='+ '+(r.add||'항목 추가');
+    add.onclick=()=>{list.appendChild(entRow({}));list.lastChild.querySelector('.e-t').focus()};
+    box.appendChild(add);
+  }else if(r.f){
+    r.f.forEach((f,i)=>{box.innerHTML+=`<div class="fl">${f}</div><input type="text" class="fin" value="${esc(Array.isArray(v)&&v[i]?v[i]:'')}">`});
+  }else{
+    box.innerHTML=`<textarea class="fin" rows="6" placeholder="${esc(r.ph||'')}">${esc(typeof v==='string'?v:'')}</textarea>`;
+  }
   document.getElementById('shDel').style.display=v?'block':'none';
   sheet.classList.add('open');
-  setTimeout(()=>{const f=box.querySelector('.fin');if(f)f.focus()},80);
+  setTimeout(()=>{const f=box.querySelector('.fin,.e-t');if(f)f.focus()},80);
 }
 document.getElementById('shClose').onclick=()=>sheet.classList.remove('open');
 sheet.onclick=e=>{if(e.target===sheet)sheet.classList.remove('open')};
 document.getElementById('shSave').onclick=()=>{
   const k=dk(cur),r=editing.rec,box=document.getElementById('shFields');
-  const v=r.f?[...box.querySelectorAll('.fin')].map(x=>x.value.trim()):box.querySelector('.fin').value.trim();
-  const has=Array.isArray(v)?v.some(Boolean):!!v;
+  let v,has;
+  if(r.list){
+    v=[...box.querySelectorAll('.ent')].map(d=>({
+      t:d.querySelector('.e-t').value.trim(),
+      s:d.querySelector('.e-s').value.trim(),
+      u:d.querySelector('.e-u').value.trim()
+    })).filter(e=>e.t||e.s||e.u);
+    has=v.length>0;
+  }else if(r.f){
+    v=[...box.querySelectorAll('.fin')].map(x=>x.value.trim());has=v.some(Boolean);
+  }else{v=box.querySelector('.fin').value.trim();has=!!v}
   ST.rec[k]=ST.rec[k]||{};
   if(has){ST.rec[k][editing.id]=v;check(editing.id)}else delete ST.rec[k][editing.id];
   persist();sheet.classList.remove('open');render();
@@ -455,6 +509,12 @@ const sheet2=document.getElementById('sheet2');
 let copyText='';
 document.getElementById('s2Close').onclick=()=>sheet2.classList.remove('open');
 sheet2.onclick=e=>{if(e.target===sheet2)sheet2.classList.remove('open')};
+function lkHTML(e){
+  const u=safeUrl(e.u);
+  const inner=`<b>${esc(e.t||'(제목 없음)')}</b>${e.s?`<span>${esc(e.s)}</span>`:''}${u?`<i>${esc(host(u))} ↗</i>`:''}`;
+  return u?`<a class="lk" href="${esc(u)}" target="_blank" rel="noopener">${inner}</a>`
+          :`<div class="lk">${inner}</div>`;
+}
 document.getElementById('allBtn').onclick=()=>{
   const k=dk(cur),all=BLOCKS.flatMap(b=>blocksOf(cur)[b.id]);
   document.getElementById('s2Title').textContent=`${cur.getMonth()+1}월 ${cur.getDate()}일 기록`;
@@ -462,11 +522,14 @@ document.getElementById('allBtn').onclick=()=>{
   const body=document.getElementById('s2Body');body.innerHTML='';let any=false;
   copyText=`${dk(cur)} 기록\n\n`;
   all.forEach(x=>{const v=recOf(k,x.id);if(!v)return;any=true;let inner='';
-    if(Array.isArray(v)){x.rec.f.forEach((f,i)=>{if(v[i])inner+=`<div class="rn"><b style="color:var(--ink)">${f}</b> — ${esc(v[i])}</div>`})}
+    if(isList(v)){v.forEach(e=>inner+=lkHTML(e))}
+    else if(Array.isArray(v)){x.rec.f.forEach((f,i)=>{if(v[i])inner+=`<div class="rn"><b style="color:var(--ink)">${f}</b> — ${esc(v[i])}</div>`})}
     else inner=`<div class="rb">${esc(v)}</div>`;
     body.innerHTML+=`<div class="rc"><div class="rh"><span style="width:7px;height:7px;border-radius:50%;background:${A[x.a]};display:inline-block"></span>${esc(x.n)}</div>${inner}</div>`;
     copyText+=`[${x.n}]\n`;
-    if(Array.isArray(v)){x.rec.f.forEach((f,i)=>{if(v[i])copyText+=`- ${f}: ${v[i]}\n`})}else copyText+=v+'\n';
+    if(isList(v)){v.forEach(e=>{copyText+=`- ${e.t||''}\n`;if(e.s)copyText+=`  ${e.s}\n`;if(e.u)copyText+=`  ${e.u}\n`})}
+    else if(Array.isArray(v)){x.rec.f.forEach((f,i)=>{if(v[i])copyText+=`- ${f}: ${v[i]}\n`})}
+    else copyText+=v+'\n';
     copyText+='\n'});
   if(!any)body.innerHTML='<div class="empty">아직 기록이 없습니다.<br>항목 오른쪽 ✎ 를 눌러 남겨보세요.</div>';
   sheet2.classList.add('open');
@@ -504,7 +567,7 @@ document.getElementById('statBtn').onclick=()=>{
     const done=doneOf(dk(d));
     BLOCKS.forEach(b=>blocksOf(d)[b.id].forEach(x=>{
       const key=x.extra?'기타 — '+x.n:x.n;
-      rows[key]=rows[key]||{a:x.a,cells:Array(7).fill(null),ext:!!x.extra};
+      rows[key]=rows[key]||{a:x.a,cells:Array(7).fill(null)};
       rows[key].cells[idx]=done.includes(x.id);
     }));
   });
@@ -521,16 +584,14 @@ document.getElementById('statBtn').onclick=()=>{
       html+=`<div class="gr"><span class="gn">${esc(n)}</span><span class="cells">`;
       rows[n].cells.forEach(c=>{
         html+=c===null?'<span class="cell na"></span>'
-          :c?`<span class="cell" style="background:${GC[g]}"></span>`
-             :'<span class="cell"></span>';
+          :c?`<span class="cell" style="background:${GC[g]}"></span>`:'<span class="cell"></span>';
       });
       html+='</span></div>';
     });
     body.innerHTML+=html+'</div>';
   });
-  const s=scoreOf(cur);
   document.getElementById('s5Sub').textContent=
-    `${days[0].getMonth()+1}/${days[0].getDate()} ~ ${days[6].getMonth()+1}/${days[6].getDate()} · 색이 찬 칸이 해낸 날, 점선은 그날 계획에 없던 항목`;
+    `${days[0].getMonth()+1}/${days[0].getDate()} ~ ${days[6].getMonth()+1}/${days[6].getDate()} · 색이 찬 칸이 해낸 날`;
   if(!Object.keys(rows).length)body.innerHTML='<div class="empty">표시할 항목이 없습니다.</div>';
   sheet5.classList.add('open');
 };
@@ -628,16 +689,16 @@ function render(){
     const chain=document.createElement('div');chain.className='chain';
     const nextIdx=items.findIndex(x=>!S.done.includes(x.id));
     items.forEach((x,i)=>{
-      const on=S.done.includes(x.id),c=A[x.a],memo=recOf(k,x.id);
+      const on=S.done.includes(x.id),c=A[x.a],memo=recOf(k,x.id),lst=isList(memo);
       const row=document.createElement('div');
       row.className='it'+(on?' done':'')+(i===nextIdx?' next':'')+(x.s===0&&!x.extra?' base':'');
       const btn=document.createElement('button');btn.className='main';btn.setAttribute('aria-pressed',on);
       btn.innerHTML=
        `<span class="num" style="${on?`background:${c};border-color:${c}`:''}">${on?'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.2 5.3L20 6.6"/></svg>':(i+1)}</span>
         <span class="body">
-          <span class="nm" style="color:${on?c:'var(--ink)'};opacity:${on?'.8':'1'}">${esc(x.n)}</span>${x.extra?'<span class="exttag">기타</span>':''}${x.s===ST.stage&&!x.extra?'<span class="newtag">새로</span>':''}${i===nextIdx?'<span class="nexttag">다음</span>':''}
+          <span class="nm" style="color:${on?c:'var(--ink)'};opacity:${on?'.8':'1'}">${esc(x.n)}</span>${lst?`<span class="cnt">${memo.length}건</span>`:''}${x.extra?'<span class="exttag">기타</span>':''}${x.s===ST.stage&&!x.extra?'<span class="newtag">새로</span>':''}${i===nextIdx?'<span class="nexttag">다음</span>':''}
           ${x.note?`<span class="note">${x.note}</span>`:''}
-          ${memo?`<span class="memo">${esc(recText(memo))}</span>`:''}
+          ${memo&&!lst?`<span class="memo">${esc(recText(memo))}</span>`:''}
         </span>
         <span class="rt"><span class="pt" style="color:${on?c:'var(--ink)'}">${x.extra?'+':''}${x.p}점</span><span class="min">${x.m}분</span></span>`;
       btn.onclick=()=>toggle(x.id);row.appendChild(btn);
@@ -646,6 +707,8 @@ function render(){
       if(x.extra){const del=document.createElement('button');del.className='pen';del.textContent='✕';
         del.setAttribute('aria-label','삭제');del.onclick=()=>delExtra(b.id,x.id);row.appendChild(del)}
       chain.appendChild(row);
+      if(lst){const lw=document.createElement('div');lw.className='links';
+        lw.innerHTML=memo.map(lkHTML).join('');chain.appendChild(lw)}
     });
     const line=document.createElement('div');line.className='line';line.style.top='22px';line.style.bottom='22px';
     chain.appendChild(line);sec.appendChild(chain);
