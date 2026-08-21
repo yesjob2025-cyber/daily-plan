@@ -380,7 +380,7 @@ textarea:focus,input:focus,select:focus{outline:0;border-color:var(--ink);backgr
       <select id="tCat"><option value="업무">업무</option><option value="개인">개인</option></select>
       <button id="tAdd">추가</button>
     </div>
-    <p class="hint" style="margin-top:9px;padding-top:0;border:0">추가한 일은 <b>일상</b>으로 들어갑니다. <b>일상</b> 배지를 누르면 중요로 바뀌고, <b>+</b> 를 누르면 그 아래 세부 업무를 붙일 수 있습니다.</p>
+    <p class="hint" style="margin-top:9px;padding-top:0;border:0">새 할 일은 <b>일상</b>으로 들어갑니다. 배지를 누르면 <b>중요</b>로 바뀌며, 큰 업무와 세부 업무를 각각 따로 지정할 수 있습니다.</p>
     <div id="s8Body"></div>
   </div>
 </div>
@@ -766,17 +766,19 @@ function todoRow(t,sub){
       kc.textContent=kids.filter(x=>x.done).length+'/'+kids.length;
       row.appendChild(kc);
     }
-    const lv=document.createElement('button');lv.type='button';
-    lv.className='lvb'+(isImp(t)?' imp':'');lv.textContent=isImp(t)?'중요':'일상';
-    lv.addEventListener('click',()=>{
-      t.lv=isImp(t)?'일상':'중요';
-      kidsOf(t.id).forEach(c=>c.lv=t.lv);
-      persist();renderBoard();render();
-    });
+  }
+  const lv=document.createElement('button');lv.type='button';
+  lv.className='lvb'+(isImp(t)?' imp':'');lv.textContent=isImp(t)?'중요':'일상';
+  lv.setAttribute('aria-label','중요·일상 바꾸기');
+  lv.addEventListener('click',()=>{
+    t.lv=isImp(t)?'일상':'중요';persist();renderBoard();render();
+  });
+  row.appendChild(lv);
+  if(!sub){
     const plus=document.createElement('button');plus.type='button';plus.className='pl';plus.textContent='+';
     plus.setAttribute('aria-label','세부 업무 추가');
     plus.addEventListener('click',()=>{openSub=openSub===t.id?null:t.id;renderBoard()});
-    row.appendChild(lv);row.appendChild(plus);
+    row.appendChild(plus);
   }
   const del=document.createElement('button');del.type='button';del.className='bx';del.textContent='✕';
   del.setAttribute('aria-label','삭제');
@@ -814,7 +816,7 @@ function subInput(pid){
   const add=()=>{
     const v=inp.value.trim();if(!v){inp.focus();return}
     const par=todoById(pid);
-    ST.todos.push({id:'t'+Date.now().toString(36),t:v,cat:par.cat,lv:par.lv||'일상',pid,done:false});
+    ST.todos.push({id:'t'+Date.now().toString(36),t:v,cat:par.cat,lv:'일상',pid,done:false});
     foldTask[pid]=false;
     inp.value='';persist();renderBoard();render();
     setTimeout(()=>{const f=document.querySelector('.subin input');if(f)f.focus()},60);
@@ -829,13 +831,13 @@ function renderBoard(){
   const open=ST.todos.filter(t=>!t.done);
   const doneWeek=ST.todos.filter(t=>t.done&&t.doneAt>=wk&&t.doneAt<=dk(we));
   document.getElementById('s8Sub').innerHTML=
-    `${wd.getMonth()+1}/${wd.getDate()} ~ ${we.getMonth()+1}/${we.getDate()} 주간 · 남은 일 <b>${open.length}개</b> · 이번 주 완료 <b>${doneWeek.length}개</b><br>제목 줄을 누르면 접힙니다 · 글자를 누르면 수정 · <b>+</b> 로 세부 업무 추가`;
+    `${wd.getMonth()+1}/${wd.getDate()} ~ ${we.getMonth()+1}/${we.getDate()} 주간 · 남은 일 <b>${open.length}개</b> · 이번 주 완료 <b>${doneWeek.length}개</b><br>제목 줄을 누르면 접힘 · 글자를 누르면 수정 · 배지로 중요·일상 지정`;
   const body=document.getElementById('s8Body');body.innerHTML='';
   ['업무','개인'].forEach(cat=>{
     const tops=open.filter(t=>t.cat===cat&&!t.pid);
     const closed=!!foldGrp[cat];
     const h=document.createElement('div');h.className='grp'+(closed?' closed':'');
-    h.innerHTML=`${cat} <span>${open.filter(t=>t.cat===cat).length}개 · 중요 ${tops.filter(isImp).length}개</span><span class="arw">▾</span>`;
+    h.innerHTML=`${cat} <span>${open.filter(t=>t.cat===cat).length}개 · 중요 ${open.filter(t=>t.cat===cat&&isImp(t)).length}개</span><span class="arw">▾</span>`;
     h.addEventListener('click',()=>{foldGrp[cat]=!foldGrp[cat];renderBoard()});
     body.appendChild(h);
     if(closed)return;
@@ -846,7 +848,11 @@ function renderBoard(){
     tops.sort((a,b)=>(isImp(b)?1:0)-(isImp(a)?1:0));
     tops.forEach(t=>{
       body.appendChild(todoRow(t,false));
-      if(!foldTask[t.id])kidsOf(t.id).filter(c=>!c.done).forEach(c=>body.appendChild(todoRow(c,true)));
+      if(!foldTask[t.id]){
+        kidsOf(t.id).filter(c=>!c.done)
+          .sort((a,b)=>(isImp(b)?1:0)-(isImp(a)?1:0))
+          .forEach(c=>body.appendChild(todoRow(c,true)));
+      }
       if(openSub===t.id)body.appendChild(subInput(t.id));
     });
   });
